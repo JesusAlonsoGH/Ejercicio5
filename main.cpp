@@ -1,7 +1,7 @@
 #include <iostream>
 #include "Book.h"
 #include "Person.h"
-
+#include "Loan.h"
 using namespace std;
 void mainn(){
     cout<<"----------Menu-------------"<<endl;
@@ -47,6 +47,10 @@ Person registerU(){
 
     return Person(nameU,age);
 }
+Loan registerL(){
+    int NumberU=0;
+
+}
 int main() {
    int optionM=0;
    int accumulator=0;
@@ -61,6 +65,8 @@ int main() {
    char isbn[100];
    Person user[10];
    int accumulatorU=0;
+   int accumulatorL=0;
+   Loan loans[100];
    while(end==true) {
        mainn();
        cin >> optionM;
@@ -152,7 +158,37 @@ int main() {
                    case 5:
                        break;
                }
+         if(optionM==3){
+             cout<<"----Administrar prestamo----"<<endl;
+             cout<<"1.Registrar 2.Editar 3.Consultar informacion  4.Menu principal"<<endl;
+             cout<<"Opcion:";
+             cin>>optionM;
+             case 1:
+                 loans[accumulatorL]=registerL();
+             accumulatorL+=1;
+             break;
+             case 2:
+                 cout<<"-----Devolver-------"<<endl;
+             cout<<"Libro que desea editar :";
 
+             cin>>optionM;
+             books[optionM].toString();
+             books[optionM]=registerF();
+             break;
+
+
+             case 3:
+                 cout<<"------Datos-------"<<endl;
+             cout<<"usuario :";
+
+             cin>>optionM;
+             books[optionM].toString();
+
+             break;
+
+             case 4:
+                 break;
+         }
 
        }
    }
