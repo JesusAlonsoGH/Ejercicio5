@@ -8,14 +8,20 @@
 
 class Loan {
 private:
-    char user[100];
-    char books[100];
+    int  users;
+    int books;
     char date [100];
-    char status[100];
+    int status;
+    char dateR[100];
 public:
     Loan();
-    Loan(char[],char[],char[],char[]);
+    Loan(int,int,char[],int,char[]);
+    int getuser();
+    int getbooks();
+    int getstatus();
     void toString();
+    int backBook();
+    char getdateR();
 };
 
 

@@ -2,6 +2,7 @@
 #include "Book.h"
 #include "Person.h"
 #include "Loan.h"
+#include <math.h>
 using namespace std;
 void mainn(){
     cout<<"----------Menu-------------"<<endl;
@@ -48,9 +49,31 @@ Person registerU(){
     return Person(nameU,age);
 }
 Loan registerL(){
-    int NumberU=0;
+    int book=0;
+    int users=0;
+    char date[100];
+    int status=0;
+    char dateR[100];
+
+    cout<<"Ingrese numero de libro"<<endl;
+    cin>>book;
+    cout<<"Ingrese numero de usuario"<<endl;
+    cin>>users;
+    cout<<"Ingrese fecha de prestamo:"<<endl;
+    cin>>date;
+
+
+        dateR[100]='N';
+        status=1;
+
+
+    cout<<"Prestamo realizado";
+
+
+    return Loan (book,users,date,status,dateR);
 
 }
+
 int main() {
    int optionM=0;
    int accumulator=0;
@@ -67,130 +90,170 @@ int main() {
    int accumulatorU=0;
    int accumulatorL=0;
    Loan loans[100];
+    bool r=true;
+
    while(end==true) {
        mainn();
        cin >> optionM;
-       if(optionM==1){
-           cout<<"----Administrar usuarios----"<<endl;
-           cout<<"1.Registrar 2.Editar 3.Consultar informacion 4.Eliminar 5.Menu principal"<<endl;
-           cout<<"Opcion:";
-           cin>>optionM;
+       if(optionM==1) {
+           cout << "----Administrar usuarios----" << endl;
+           cout << "1.Registrar 2.Editar 3.Consultar informacion 4.Eliminar 5.Menu principal" << endl;
+           cout << "Opcion:";
+           cin >> optionM;
 
            switch (optionM) {
 
 
                case 1:
-                   user[accumulatorU]=registerU();
-                   cout<<"Numero de usuario:"<<accumulatorU<<endl;
-                   accumulatorU+=1;
+                   user[accumulatorU] = registerU();
+                   cout << "Numero de usuario:" << accumulatorU << endl;
+                   accumulatorU += 1;
                    break;
                case 2:
-                   cout<<"------Edicion de datos de usuario-------"<<endl;
-                   cout<<"Libro que desea editar :";
+                   cout << "------Edicion de datos de usuario-------" << endl;
+                   cout << "Libro que desea editar :";
 
-                   cin>>optionM;
+                   cin >> optionM;
                    user[optionM].toString();
-                   user[optionM]=registerU();
+                   user[optionM] = registerU();
                    break;
 
 
                case 3:
-                   cout<<"------Datos de usuario-------"<<endl;
-                   cout<<"Libro que desea ver sus datos :";
+                   cout << "------Datos de usuario-------" << endl;
+                   cout << "Libro que desea ver sus datos :";
 
-                   cin>>optionM;
+                   cin >> optionM;
                    user[optionM].toString();
 
                    break;
                case 4:
-                   cout<<"------Eliminar usuario-------"<<endl;
-                   cout<<"Libro que desea eliminar:";
-                   cin>>optionM;
-                   user[optionM]=Person();
-                   cout<<"Libro eliminado "<<endl;
+                   cout << "------Eliminar usuario-------" << endl;
+                   cout << "Libro que desea eliminar:";
+                   cin >> optionM;
+                   user[optionM] = Person();
+                   cout << "Libro eliminado " << endl;
                    break;
                case 5:
                    break;
            }
 
-
        }
-       if(optionM==2){
+
+       if(optionM==2) {
            //Registro de libro
 
-               cout<<"----Administrar Libros----"<<endl;
-               cout<<"1.Registrar 2.Editar 3.Consultar informacion 4.Eliminar 5.Menu principal"<<endl;
-               cout<<"Opcion:";
-               cin>>optionM;
+           cout << "----Administrar Libros----" << endl;
+           cout << "1.Registrar 2.Editar 3.Consultar informacion 4.Eliminar 5.Menu principal" << endl;
+           cout << "Opcion:";
+           cin >> optionM;
 
-               switch (optionM) {
-
-
-                   case 1:
-                       books[accumulator]=registerF();
-                       accumulatorU+=1;
-                       break;
-                   case 2:
-                       cout<<"------Edicion de libro-------"<<endl;
-                       cout<<"Libro que desea editar :";
-
-                       cin>>optionM;
-                       books[optionM].toString();
-                       books[optionM]=registerF();
-                       break;
+           switch (optionM) {
 
 
-                   case 3:
-                       cout<<"------Datos-------"<<endl;
-                       cout<<"Libro que desea ver sus datos :";
+               case 1:
+                   books[accumulator] = registerF();
+                   accumulatorU += 1;
+                   break;
+               case 2:
+                   cout << "------Edicion de libro-------" << endl;
+                   cout << "Libro que desea editar :";
 
-                       cin>>optionM;
-                       books[optionM].toString();
+                   cin >> optionM;
+                   books[optionM].toString();
+                   books[optionM] = registerF();
+                   break;
 
-                       break;
-                   case 4:
-                       cout<<"------Eliminar libro-------"<<endl;
-                       cout<<"Libro que desea eliminar:";
-                       cin>>optionM;
-                       books[optionM]=Book();
-                       cout<<"Libro eliminado "<<endl;
-                       break;
-                   case 5:
-                       break;
-               }
+
+               case 3:
+                   cout << "------Datos-------" << endl;
+                   cout << "Libro que desea ver sus datos :";
+
+                   cin >> optionM;
+                   books[optionM].toString();
+
+                   break;
+               case 4:
+                   cout << "------Eliminar libro-------" << endl;
+                   cout << "Libro que desea eliminar:";
+                   cin >> optionM;
+                   books[optionM] = Book();
+                   cout << "Libro eliminado " << endl;
+                   break;
+               case 5:
+                   break;
+           }
+       }
          if(optionM==3){
              cout<<"----Administrar prestamo----"<<endl;
-             cout<<"1.Registrar 2.Editar 3.Consultar informacion  4.Menu principal"<<endl;
+             cout<<"1.Realizar prestamo 2.Devolver libro 3.Consultar informacion  4.Menu principal"<<endl;
              cout<<"Opcion:";
              cin>>optionM;
-             case 1:
-                 loans[accumulatorL]=registerL();
-             accumulatorL+=1;
-             break;
-             case 2:
-                 cout<<"-----Devolver-------"<<endl;
-             cout<<"Libro que desea editar :";
+             switch (optionM) {
+                 case 1:
 
-             cin>>optionM;
-             books[optionM].toString();
-             books[optionM]=registerF();
-             break;
+                     cout<<"Ingrese numero del libro";
+                     cin>>optionM;
+                     for(int i=0;i<=accumulatorL;i++){
+                         if (loans[i].getstatus()==1){
+
+                             r=false;
+                         }
+
+                     }
+                     if(r==true){
+
+                             loans[accumulatorL]=registerL();
+
+                             accumulatorL=accumulatorL+1;
+
+                     }
+                     else{
+                         cout<<"Libro prestado"<<endl;
+                     }
+                     break;
+                 case 2:
+                     cout<<"-----Devolver-------"<<endl;
+                     cout<<"Libro que desea devolver :";
+
+                     cin>>optionM;
+                     for(int j=0;j<=accumulatorL;j++){
+                         if(optionM==loans[j].getbooks()){
+                             if(loans[j].getstatus()==1){
+                              loans[j].backBook();
+
+                             }
+                         }
+                     }
+
+                     break;
 
 
-             case 3:
-                 cout<<"------Datos-------"<<endl;
-             cout<<"usuario :";
+                 case 3:
+                     cout<<"------Datos-------"<<endl;
+                     cout<<"usuario :";
 
-             cin>>optionM;
-             books[optionM].toString();
+                     cin>>optionM;
+                     for(int z=0;z<=accumulatorL;z++){
+                         if(loans[z].getuser()==optionM){
+                            loans[z].toString();
+                           for(int y=0;y<=10;y++){
+                               if(loans[z].getbooks()==y){
+                                   books[y].toString();
+                               }
+                           }
+                         }
+                     }
 
-             break;
+                     break;
 
-             case 4:
-                 break;
+                 case 4:
+                     break;
+             }
+
          }
 
-       }
+
    }
     return 0;
 }
